@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] animalList;
+    [SerializeField] GameManager manager; 
+
     [SerializeField] float spawnRadius = 20f;
 
     [SerializeField] float startDelay = 2f;
@@ -27,6 +29,7 @@ public class SpawnManager : MonoBehaviour
     {
         int animalIndex = Random.Range(0, animalList.Length);
         Vector3 spawnPosition = getSpawnLocation(spawnRadius);
-        Instantiate(animalList[animalIndex], spawnPosition, Quaternion.identity);
+        GameObject temp = Instantiate(animalList[animalIndex], spawnPosition, Quaternion.identity);
+        temp.GetComponent<AnimalController>().setManager(manager);
     }
 }

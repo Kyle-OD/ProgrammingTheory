@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject foodPrefab;
     [SerializeField] Vector3 foodOffset;
     [SerializeField] GameObject foodInHand;
-    [SerializeField] float foodCooldown = 5f;
+    [SerializeField] float foodCooldown = 2f;
     bool foodOnCooldown = false;
     // Start is called before the first frame update
     void Start()

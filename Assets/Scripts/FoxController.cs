@@ -13,6 +13,8 @@ public class FoxController : AnimalController
     {
         speed = foxSpeed;
         score = foxScore;
+        MovementDirection();
+        transform.LookAt(transform.position + moveDirection);
     }
 
     protected override void MovementDirection()
@@ -26,6 +28,11 @@ public class FoxController : AnimalController
             //Debug.Log("zPos: " + zPos + ", zMax: " + zMax + ", zMin: " + zMin);
             zPos = (zMax - zMin) - zPos;
         }
-        moveDirection = new Vector3(xPos, 0, zPos);
+
+        Vector3 spawn = transform.position;
+        Vector3 midPoint = new Vector3(xPos, 0, zPos);
+
+        moveDirection = (midPoint - spawn).normalized;
+
     }
 }

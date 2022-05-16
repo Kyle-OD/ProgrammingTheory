@@ -2357,7 +2357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundingRadius: 20
-  margin: 1
+  margin: 10
 --- !u!65 &7540605576693200879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2383,6 +2383,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407250a3df383bc489476eb15d22a5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  rangeMin: 0
+  rangeMax: 5
+  dogSpeed: 6
+  dogScore: 6
 --- !u!1 &6288800071250975316
 GameObject:
   m_ObjectHideFlags: 0

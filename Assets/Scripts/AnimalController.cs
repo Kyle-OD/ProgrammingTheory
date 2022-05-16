@@ -6,21 +6,13 @@ public abstract class AnimalController : MonoBehaviour
 {
     [SerializeField] GameManager manager;
     public int score { get; protected set; }
-    protected Vector3 moveDirection;
+    [SerializeField] protected Vector3 moveDirection;
     protected float speed;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        MovementDirection();
-        transform.LookAt(moveDirection);
-    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -36,4 +28,9 @@ public abstract class AnimalController : MonoBehaviour
     }
 
     protected abstract void MovementDirection();
+
+    public virtual void setManager(GameManager gManager)
+    {
+        manager = gManager;
+    }
 }

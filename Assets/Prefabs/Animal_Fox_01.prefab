@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundingRadius: 20
-  margin: 1
+  margin: 10
 --- !u!65 &4810455883940009929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -106,6 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d223940727506b47bf1936688d8000e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  rangeMin: 4
+  rangeMax: 10
+  foxSpeed: 10
+  foxScore: 10
 --- !u!1 &1388348013800712248
 GameObject:
   m_ObjectHideFlags: 0
