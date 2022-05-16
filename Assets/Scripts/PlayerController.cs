@@ -4,64 +4,42 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 playerSpawn;
-    [SerializeField] Vector3 frisbeeOffset;
-    [SerializeField] float playerRange = 7;
-    [SerializeField] float playerSpeed = 5;
     [SerializeField] float distanceFromSpawn;
 
-    [SerializeField] GameObject PlayerArm;
-    [SerializeField] float petCooldown = 5f;
-    bool petOnCooldown = false;
+    [SerializeField] GameObject foodPrefab;
+    [SerializeField] Vector3 foodOffset;
+    [SerializeField] GameObject foodInHand;
+    [SerializeField] float foodCooldown = 5f;
+    bool foodOnCooldown = false;
     // Start is called before the first frame update
     void Start()
     {
-        playerSpawn = transform.position;
+        foodOffset = foodInHand.gameObject.transform.localPosition;
+        foodOffset.y = foodInHand.gameObject.transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        CheckInput();
-    }
-
-    private void MovePlayer()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        distanceFromSpawn = (transform.position - playerSpawn).magnitude;
-
-        if (distanceFromSpawn < playerRange)
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * playerSpeed * horizontalInput);
-            transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed * verticalInput);
-        }
-        else
-        {
-            transform.Translate((playerSpawn - transform.position).normalized * Time.deltaTime * playerSpeed);
-        }
+        CheckInput();   
     }
 
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !petOnCooldown)
+        if (Input.GetKeyDown(KeyCode.Space) && !foodOnCooldown)
         {
-            Debug.Log("Mouse Click Detected");
-            petOnCooldown = true;
-            RotateArm();
-            StartCoroutine(PetCooldown());
+            Debug.Log("Space Click Detected");
+            foodOnCooldown = true;
+            foodInHand.gameObject.SetActive(false);
+            Instantiate(foodPrefab, transform.position + foodOffset, transform.rotation);
+            StartCoroutine(FoodCooldown());
         }
     }
 
-    private void RotateArm()
+    IEnumerator FoodCooldown()
     {
-
-    }
-
-    IEnumerator PetCooldown()
-    {
-        yield return new WaitForSeconds(petCooldown);
-        petOnCooldown = false;
+        yield return new WaitForSeconds(foodCooldown);
+        foodOnCooldown = false;
+        foodInHand.gameObject.SetActive(true);
     }
 }

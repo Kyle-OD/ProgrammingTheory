@@ -13,11 +13,15 @@ public class ThirdPersonMovement : MonoBehaviour
     float turnSmoothVelocity;
 
     Vector3 spawnPosition;
+    Vector3 previousPosition;
+    public Vector3 direction { get; private set; }
+    public Vector3 velocity { get; private set; }
     [SerializeField] float playerRange;
 
     private void Start()
     {
         spawnPosition = transform.position;
+        previousPosition = spawnPosition;
     }
 
     void Update()
@@ -26,7 +30,6 @@ public class ThirdPersonMovement : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         float distanceFromSpawn = (transform.position - spawnPosition).magnitude;
-        Vector3 direction;
 
         if (distanceFromSpawn < playerRange)
         {
@@ -38,7 +41,8 @@ public class ThirdPersonMovement : MonoBehaviour
             direction = (spawnPosition - transform.position).normalized;
             controller.Move(direction * speed * Time.deltaTime);
         }
-        
+        velocity = (transform.position - previousPosition) / Time.deltaTime;
+        previousPosition = transform.position;
     }
 
     void MovePlayer(Vector3 direction)
