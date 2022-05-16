@@ -14,10 +14,10 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
+        InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval); 
     }
 
-    public Vector3 getSpawnLocation(float radius)
+    public Vector3 getSpawnLocation(float radius) 
     {
         float xPos = Random.Range(-radius, radius);
         float zPos = Mathf.Sqrt(Mathf.Pow(radius, 2) - Mathf.Pow(xPos, 2)) * (Random.Range(0, 2) * 2 - 1);
@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     void SpawnRandomAnimal()
     {
         int animalIndex = Random.Range(0, animalList.Length);
-        Vector3 spawnPosition = getSpawnLocation(spawnRadius);
+        Vector3 spawnPosition = getSpawnLocation(spawnRadius); // ABSTRACTION
         GameObject temp = Instantiate(animalList[animalIndex], spawnPosition, Quaternion.identity);
         temp.GetComponent<AnimalController>().setManager(manager);
     }

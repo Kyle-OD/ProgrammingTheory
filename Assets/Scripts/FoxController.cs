@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoxController : AnimalController
+public class FoxController : AnimalController // INHERITANCE
 {
     [SerializeField] float rangeMin = 4;
     [SerializeField] float rangeMax = 10;
@@ -13,11 +13,11 @@ public class FoxController : AnimalController
     {
         speed = foxSpeed;
         score = foxScore;
-        MovementDirection();
+        MovementDirection(); // ABSTRACTION
         transform.LookAt(transform.position + moveDirection);
     }
 
-    protected override void MovementDirection()
+    protected override void MovementDirection() // POLYMORPHISM
     {
         float xPos = Random.Range(-rangeMax, rangeMax);
         float zMin = Mathf.Sqrt(Mathf.Abs(Mathf.Pow(rangeMin, 2) - Mathf.Pow(xPos, 2)));

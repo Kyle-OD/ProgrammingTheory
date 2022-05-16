@@ -14,8 +14,8 @@ public class ThirdPersonMovement : MonoBehaviour
 
     Vector3 spawnPosition;
     Vector3 previousPosition;
-    public Vector3 direction { get; private set; }
-    public Vector3 velocity { get; private set; }
+    public Vector3 direction { get; private set; } // ENCAPSULATION
+    public Vector3 velocity { get; private set; } // ENCAPSULATION
     [SerializeField] float playerRange;
 
     private void Start()
@@ -34,7 +34,7 @@ public class ThirdPersonMovement : MonoBehaviour
         if (distanceFromSpawn < playerRange)
         {
             direction = new Vector3(horizontal, 0f, vertical).normalized;
-            MovePlayer(direction);
+            MovePlayer(direction); // ABSTRACTION
         }
         else
         {

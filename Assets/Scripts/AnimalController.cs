@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AnimalController : MonoBehaviour
 {
     [SerializeField] GameManager manager;
-    public int score { get; protected set; }
+    public int score { get; protected set; } // ENCAPSULATION
     [SerializeField] protected Vector3 moveDirection;
     protected float speed;
 
@@ -24,12 +24,12 @@ public abstract class AnimalController : MonoBehaviour
 
     protected virtual void UpdateScore()
     {
-        manager.addScore(score);
+        manager.addScore(score); 
     }
 
-    protected abstract void MovementDirection();
+    protected abstract void MovementDirection(); // POLYMORPHISM
 
-    public virtual void setManager(GameManager gManager)
+    public virtual void setManager(GameManager gManager) // ENCAPSULATION
     {
         manager = gManager;
     }
