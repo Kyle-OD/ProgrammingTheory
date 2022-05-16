@@ -12,7 +12,7 @@ public abstract class AnimalController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         MovementDirection();
         transform.LookAt(moveDirection);
     }
